@@ -1,0 +1,15 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block sidebar %}
+{% include "components/sidebar.html" %}
+{% endblock %}
+
+{% block contents %}
+<div class="p-6">
+    <h2 class="text-3xl font-bold mb-4">Main Content</h2>
+    <p>Here's your main page content!</p>
+</div>
+{% endblock %}
