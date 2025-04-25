@@ -4,10 +4,10 @@
     <div class="p-6">
       <h1 class="text-2xl font-bold mb-6">Absensi Metschoo</h1>
       <nav class="flex flex-col gap-4">
-        <a href="#" class="hover:bg-gray-700 p-2 rounded">Dashboard</a>
-        <a href="#" class="hover:bg-gray-700 p-2 rounded">Managemen Admin</a>
-        <a href="#" class="hover:bg-gray-700 p-2 rounded">Tambah Kartu</a>
-        <a href="#" class="hover:bg-gray-700 p-2 rounded">Absensi Siswa</a>
+        <a href="{% url 'home'%}" class="hover:bg-gray-700 p-2 rounded">Dashboard</a>
+        <a href="{% url 'add_superuser' %}" class="hover:bg-gray-700 p-2 rounded">Tambah Akun</a>
+        <a href="{% url 'add_student' %}" class="hover:bg-gray-700 p-2 rounded">Tambah Siswa</a>
+        <a href="#" class="hover:bg-gray-700 p-2 rounded">Tambah Guru</a>
       </nav>
     </div>
 </div>

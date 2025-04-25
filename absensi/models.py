@@ -28,3 +28,6 @@ class Siswa(models.Model):
     class Meta:
         verbose_name = "Siswa"
         verbose_name_plural = "Siswa"
+
+class Guru(models.Model):
+    pass
