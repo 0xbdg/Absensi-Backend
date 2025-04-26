@@ -28,7 +28,7 @@ class SuperuserUpdateForm(UserChangeForm):
     password2 = forms.CharField(widget=forms.PasswordInput, required=True, label='Confirm Password')
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['username', "password"]
 
     def clean(self):
         cleaned_data = super().clean()

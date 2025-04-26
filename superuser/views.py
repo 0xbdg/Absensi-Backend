@@ -19,6 +19,7 @@ class UserPage(LoginRequiredMixin,ListView):
     model = User
     template_name = "admin/pages/superuser.html"
     context_object_name = "Users"
+    paginate_by = 10
 
 class StudentPage(LoginRequiredMixin,TemplateView):
     template_name = "admin/pages/add_student.html"
@@ -37,4 +38,8 @@ class UpdateSuperuserPage(LoginRequiredMixin,UpdateView):
 
 class DeleteSuperuser(LoginRequiredMixin, DeleteView):
     model = User
+    success_url = reverse_lazy("superuser")
+
+    def get(self, request,*args, **kwargs):
+        return self.post(request, *args, **kwargs)
     
