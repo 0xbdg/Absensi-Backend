@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+
+{% block sidebar %}
+{% include "components/sidebar.html" %}
+{% endblock %}
+
+{% block contents %}
+<form method="POST" action="{% url 'add_student' %}">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <input type="submit">
+</form>
+{% endblock %}

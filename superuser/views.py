@@ -21,8 +21,30 @@ class UserPage(LoginRequiredMixin,ListView):
     context_object_name = "Users"
     paginate_by = 10
 
-class StudentPage(LoginRequiredMixin,TemplateView):
-    template_name = "admin/pages/add_student.html"
+class StudentPage(LoginRequiredMixin,ListView):
+    model = Siswa
+    template_name = "admin/pages/student.html"
+    context_object_name = "Students"
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset= super().get_queryset()
+
+        jurusan = self.request.GET.get("jurusan")
+        kelas = self.request.GET.get("kelas")
+
+        if jurusan:
+            queryset = queryset.filter(jurusan=jurusan)
+        if kelas:
+            queryset = queryset.filter(kelas=kelas)
+
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context["jurusan"] = Siswa.objects.values_list("jurusan", flat=True).distinct()
+        context["kelas"] = Siswa.objects.values_list("kelas", flat=True).distinct()
+        return context
 
 class CreateSuperuserPage(LoginRequiredMixin,CreateView):
     model = User
@@ -42,4 +64,22 @@ class DeleteSuperuser(LoginRequiredMixin, DeleteView):
 
     def get(self, request,*args, **kwargs):
         return self.post(request, *args, **kwargs)
-    
+
+class CreateStudentPage(LoginRequiredMixin, CreateView):
+    model = Siswa
+    fields= ["uid", "nama", "kelas", "jurusan"]
+    template_name = "admin/pages/student-crud/add_student.html"
+    success_url = reverse_lazy("student")
+
+class UpdateStudentPage(LoginRequiredMixin, UpdateView):
+    model = Siswa 
+    fields = ["uid", "nama", "kelas", "jurusan"]
+    template_name = "admin/pages/student-crud/update_student.html"
+    success_url = reverse_lazy("student")
+
+class DeleteStudent(LoginRequiredMixin, DeleteView):
+    model = Siswa
+    success_url = reverse_lazy("student")
+
+    def get(self, request,*args, **kwargs):
+        return self.post(request, *args, **kwargs)

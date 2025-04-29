@@ -10,7 +10,7 @@ class LoginForm(AuthenticationForm):
 class SuperuserCreationForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'email', 'password']
 
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -28,7 +28,7 @@ class SuperuserUpdateForm(UserChangeForm):
     password2 = forms.CharField(widget=forms.PasswordInput, required=True, label='Confirm Password')
     class Meta:
         model = User
-        fields = ['username', "password"]
+        fields = ['username', 'email',"password"]
 
     def clean(self):
         cleaned_data = super().clean()
