@@ -10,6 +10,13 @@ from absensi.models import *
 class DashboardPage(LoginRequiredMixin,TemplateView):
     template_name = "admin/pages/home.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["total_user"] = User.objects.count()
+        context["total_student"] = Siswa.objects.count()
+        return context
+    
+
 class LoginPage(LoginView):
     template_name = "login.html"
     authentication_form = LoginForm
@@ -20,6 +27,16 @@ class UserPage(LoginRequiredMixin,ListView):
     template_name = "admin/pages/superuser.html"
     context_object_name = "Users"
     paginate_by = 10
+
+    def get_queryset(self):
+        query = super().get_queryset()
+        search = self.request.GET.get("search")
+
+        if search:
+            query = User.objects.filter(username=search)
+
+        return query
+    
 
 class StudentPage(LoginRequiredMixin,ListView):
     model = Siswa
