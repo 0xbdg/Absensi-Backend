@@ -6,9 +6,44 @@
 
 {% block contents %}
 <form method="POST" action="{% url 'update_superuser' pk=user.id %}">
-
     {% csrf_token %}
-    {{ form.as_p}}
-    <input type="submit">
+    <div class="flex items-center justify-center p-12">
+        <!-- Author: FormBold Team -->
+        <div class="mx-auto w-full max-w-[550px]">
+                <div class="mb-5">
+                    <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Username
+                    </label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-5">
+                    <label for="phone" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Email
+                    </label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-5">
+                    <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Sandi lama
+                    </label>
+                    {{ form.password }}
+                </div>
+                <div class="mb-5">
+                    <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Sandi baru
+                    </label>
+                    {{ form.password1 }}
+                </div>
+                <div class="mb-5">
+                    <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Konfirmasi sandi
+                    </label>
+                    {{ form.password2 }}
+                </div>
+                <div>
+                    <input type="submit"class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                </div>
+        </div>
+    </div>
 </form>
 {% endblock %}

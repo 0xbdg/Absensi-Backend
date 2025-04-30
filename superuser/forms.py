@@ -1,18 +1,30 @@
 from django import forms
-from django.forms.widgets import PasswordInput, TextInput
+from django.forms.widgets import *
 from django.contrib.auth.forms import *
-from absensi.models import User
+from absensi.models import *
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(required=True, widget=TextInput(attrs={"class":""}))
-    password = forms.CharField(required=True, widget=PasswordInput(attrs={"class":""}))
+    username = forms.CharField(required=True, widget=TextInput(attrs={"class":"bg-white shadow-sm ring-0 block w-full text-lg focus:outline-none focus:border-tan-500 border-tan-300 p-2 border-2"}))
+    password = forms.CharField(required=True, widget=PasswordInput(attrs={"class":"bg-white shadow-sm ring-0 block w-full text-lg focus:outline-none focus:border-tan-500 border-tan-300 p-2 border-2"}))
+
+class StudentForm(forms.ModelForm):
+    uid = forms.CharField(widget=TextInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+    nama = forms.CharField(widget=TextInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+    kelas = forms.ChoiceField(choices=Siswa.KELAS,widget=Select(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+    jurusan = forms.ChoiceField(choices=Siswa.JURUSAN,widget=Select(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+
+    class Meta:
+        model = Siswa
+        fields = ["uid", "nama", "kelas" ,"jurusan"]
 
 class SuperuserCreationForm(forms.ModelForm):
+    username = forms.CharField(widget=TextInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+    email = forms.EmailField(widget=EmailInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+    password = forms.CharField(widget=PasswordInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
-
-    password = forms.CharField(widget=forms.PasswordInput)
 
     def save(self, commit=True):
         user = super(SuperuserCreationForm, self).save(commit=False)
@@ -24,8 +36,10 @@ class SuperuserCreationForm(forms.ModelForm):
         return user
     
 class SuperuserUpdateForm(UserChangeForm):
-    password1 = forms.CharField(widget=forms.PasswordInput, required=True, label='New Password')
-    password2 = forms.CharField(widget=forms.PasswordInput, required=True, label='Confirm Password')
+    username = forms.CharField(widget=TextInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+    email = forms.EmailField(widget=EmailInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}))
+    password1 = forms.CharField(widget=PasswordInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}),label='New Password')
+    password2 = forms.CharField(widget=PasswordInput(attrs={"class":"w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"}),label='Confirm Password')
     class Meta:
         model = User
         fields = ['username', 'email',"password"]

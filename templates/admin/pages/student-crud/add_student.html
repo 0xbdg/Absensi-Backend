@@ -7,7 +7,37 @@
 {% block contents %}
 <form method="POST" action="{% url 'add_student' %}">
     {% csrf_token %}
-    {{ form.as_p}}
-    <input type="submit">
+    <div class="flex items-center justify-center p-12">
+        <!-- Author: FormBold Team -->
+        <div class="mx-auto w-full max-w-[550px]">
+                <div class="mb-5">
+                    <label for="uid" class="mb-3 block text-base font-medium text-[#07074D]">
+                        UID
+                    </label>
+                    {{ form.uid }}
+                </div>
+                <div class="mb-5">
+                    <label for="nama" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Nama
+                    </label>
+                    {{ form.nama }}
+                </div>
+                <div class="mb-5">
+                    <label for="kelas" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Kelas
+                    </label>
+                    {{ form.kelas }}
+                </div>
+                <div class="mb-5">
+                    <label for="jurusan" class="mb-3 block text-base font-medium text-[#07074D]">
+                        Jurusan
+                    </label>
+                    {{ form.jurusan }}
+                </div>
+                <div>
+                    <input type="submit"class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                </div>
+        </div>
+    </div>
 </form>
 {% endblock %}

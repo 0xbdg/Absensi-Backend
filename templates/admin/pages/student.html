@@ -13,13 +13,13 @@
             <select name="jurusan" class="px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="">Pilih Jurusan</option>
                 {% for j in jurusan %}
-                    <option value="{{j}}" {% if request.GET.jurusan == j %}selected{% endif %}>{{j}}</option>
+                    <option value="{{j}}">{{j}}</option>
                 {% endfor %}
             </select>
             <select name="kelas" class="px-4 py-2 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="">Pilih kelas</option>
                 {% for k in kelas %}
-                    <option value="{{k}}" {% if request.GET.kelas == j %}selected{% endif %}>{{k}}</option>
+                    <option value="{{k}}">{{k}}</option>
                 {% endfor %}
             </select>
             <input type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">

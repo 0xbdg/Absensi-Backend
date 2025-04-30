@@ -1,11 +1,30 @@
 {% load static %}
 <html>
     <body>
-        <form method="POST">
+        <form method="POST" class="max-w-md">
             {% csrf_token %}
-            {{ form.username}}
-            {{ form.password}}
-            <input type="submit">
+            <div>
+                <label for="username" class="block font-semibold">Username</label>
+                <div class="mt-1">
+                    {{ form.username }}
+                </div>
+            </div>
+            <div class="mt-6">
+                <div class="flex justify-between">
+                    <label for="password" class="block font-semibold">Password</label>
+                </div>
+                <div class="mt-1">
+                    {{ form.password }}
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="flex flex-no-wrap mt-6 border-2 border-black bg-yellow-500 py-2 px-4">
+                    <span>Sign In</span> 
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-6 h-6"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </span>
+                </button>
+            </div>
         </form>
     </body>
 </html>

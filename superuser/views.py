@@ -36,7 +36,6 @@ class UserPage(LoginRequiredMixin,ListView):
             query = User.objects.filter(username=search)
 
         return query
-    
 
 class StudentPage(LoginRequiredMixin,ListView):
     model = Siswa
@@ -84,13 +83,13 @@ class DeleteSuperuser(LoginRequiredMixin, DeleteView):
 
 class CreateStudentPage(LoginRequiredMixin, CreateView):
     model = Siswa
-    fields= ["uid", "nama", "kelas", "jurusan"]
+    form_class = StudentForm
     template_name = "admin/pages/student-crud/add_student.html"
     success_url = reverse_lazy("student")
 
 class UpdateStudentPage(LoginRequiredMixin, UpdateView):
     model = Siswa 
-    fields = ["uid", "nama", "kelas", "jurusan"]
+    form_class = StudentForm
     template_name = "admin/pages/student-crud/update_student.html"
     success_url = reverse_lazy("student")
 
